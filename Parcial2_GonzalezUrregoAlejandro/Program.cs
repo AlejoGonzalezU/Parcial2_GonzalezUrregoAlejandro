@@ -1,7 +1,16 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Microsoft.EntityFrameworkCore;
+using Parcial2_GonzalezUrregoAlejandro.DAL;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Added database dependency injection
+builder.Services.AddDbContext<DatabaseContext>(o =>
+{
+    o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 var app = builder.Build();
 
