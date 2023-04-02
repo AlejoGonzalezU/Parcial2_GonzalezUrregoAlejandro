@@ -8,11 +8,11 @@ namespace Parcial2_GonzalezUrregoAlejandro.DAL.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Display(Name = "Tiquete")]
+        [Display(Name = "Número Tiquete")]
         public int Id { get; set; }
-        [Display(Name = "Fecha de creación")]
+        [Display(Name = "Fecha creación")]
         public DateTime? CreatedDate { get; set; }
-        [Display(Name = "Fecha de modificación")]
+        [Display(Name = "Fecha modificación")]
         public DateTime? ModifiedDate { get; set; }
     }
 }

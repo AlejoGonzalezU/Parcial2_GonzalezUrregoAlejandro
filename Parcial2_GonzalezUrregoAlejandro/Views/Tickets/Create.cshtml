@@ -19,26 +19,17 @@
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsUsed" /> @Html.DisplayNameFor(model => model.IsUsed)
+                    <input class="form-check-input" asp-for="Id" /> @Html.DisplayNameFor(model => model.Id)
                 </label>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="visibility: hidden;">
                 <label asp-for="EntranceGate" class="control-label"></label>
                 <input asp-for="EntranceGate" class="form-control" />
                 <span asp-validation-for="EntranceGate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ModifiedDate" class="control-label"></label>
-                <input asp-for="ModifiedDate" class="form-control" />
-                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Buscar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-warning">Regresar</a>
             </div>
         </form>
     </div>

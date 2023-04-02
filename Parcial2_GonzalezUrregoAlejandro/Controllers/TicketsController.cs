@@ -13,12 +13,16 @@ namespace Parcial2_GonzalezUrregoAlejandro.Controllers
 {
     public class TicketsController : Controller
     {
+        #region Constructor
+
         private readonly DatabaseContext _context;
 
         public TicketsController(DatabaseContext context)
         {
             _context = context;
         }
+
+        #endregion
 
         // GET: Tickets
         public async Task<IActionResult> Index()

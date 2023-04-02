@@ -5,7 +5,7 @@ namespace Parcial2_GonzalezUrregoAlejandro.DAL.Entities
 {
 	public class Ticket : Entity
 	{
-		[Display(Name = "Fecha y hora de uso")]
+		[Display(Name = "Fecha de uso")]
 		public DateTime? UseDate { get; set; }
         [Display(Name = "¿Boleta Usada?")]
         public Boolean IsUsed { get; set; }
