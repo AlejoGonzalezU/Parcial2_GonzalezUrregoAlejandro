@@ -1,9 +1,12 @@
 ﻿@{
-    ViewData["Title"] = "¡Bichota Fest!";
+    ViewData["Title"] = "Inicio";
 }
 
 <div class="text-center">
-    <h1 class="display-4">¡La Bichota Fest!</h1>
-    <p>Quizás desees <a href="https://docs.microsoft.com/aspnet/core">validar un tiquete</a>.</p>
+    <h1 class="display-4">¡Bichota Tour!</h1>
+    <p>Recuerda siempre <a asp-area="" asp-controller="Tickets" asp-action="Validate">validar el tiquete</a> antes de permitir el ingreso al concierto.</p>
 </div>
 
+<div class="d-flex align-items-center justify-content-center">
+    <img src="~/assets/concert-banner.jpeg" asp-append-version="true" alt="Concert-Banner"/>
+</div>

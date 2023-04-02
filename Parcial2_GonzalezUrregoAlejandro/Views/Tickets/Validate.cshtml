@@ -1,0 +1,76 @@
+@model Parcial2_GonzalezUrregoAlejandro.DAL.Entities.Ticket
+
+@{
+    ViewData["Title"] = "Validar tiquete";
+    string Visible = (!string.IsNullOrEmpty(Model?.Id.ToString())) ? "" : "d-none";
+    String Diabled = (!string.IsNullOrEmpty(Model?.Id.ToString())) ? "" : "d-none";
+}
+
+<h1>Validar</h1>
+
+<h4>Tiquete</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Validate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group @Html.Raw(Visible)">
+                <label asp-for="UseDate" class="control-label"></label>
+                <input asp-for="UseDate" class="form-control" disabled />
+                <span asp-validation-for="UseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check @Html.Raw(Visible)">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsUsed" disabled />
+                </label>
+            </div>
+            <div class="form-group @Html.Raw(Visible)">
+                <label asp-for="EntranceGate" class="control-label"></label>
+                <input asp-for="EntranceGate" class="form-control" />
+                <span asp-validation-for="EntranceGate" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group @Html.Raw(Visible)">
+                <label asp-for="CreatedDate" class="control-label"></label>
+                <input asp-for="CreatedDate" class="form-control" disabled />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group @Html.Raw(Visible)">
+                <label asp-for="ModifiedDate" class="control-label"></label>
+                <input asp-for="ModifiedDate" class="form-control" disabled />
+                <span asp-validation-for="ModifiedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group @Html.Raw(Visible)">
+                <select class="form-select" aria-label="Gates Selector">
+                    <option selected></option>
+                    <option value="Norte">Norte</option>
+                    <option value="Sur">Sur</option>
+                    <option value="Oriental">Oriental</option>
+                    <option value="Occidental">Occidental</option>
+                </select>
+            </div>
+                <br />
+                <div class="form-group">
+                    <a id="SubmitButton" class="btn btn-primary">Buscar tiquete</a>
+                    <a asp-action="Index" class="btn btn-warning">Ir al listado</a>
+                </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#SubmitButton").click(function () {
+            window.location.href = "/Tickets/Validate/" + $('#Id').val();
+        });
+    });
+</script>
+    }

@@ -71,12 +71,12 @@ namespace Parcial2_GonzalezUrregoAlejandro.Controllers
             return View(ticket);
         }
 
-        // GET: Tickets/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Tickets/Validate/5
+        public async Task<IActionResult> Validate(int? id)
         {
             if (id == null || _context.Tickets == null)
             {
-                return NotFound();
+                return View();
             }
 
             var ticket = await _context.Tickets.FindAsync(id);
@@ -87,10 +87,10 @@ namespace Parcial2_GonzalezUrregoAlejandro.Controllers
             return View(ticket);
         }
 
-        // POST: Tickets/Edit/5
+        // POST: Tickets/Validate/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Ticket ticket)
+        public async Task<IActionResult> Validate(int id, Ticket ticket)
         {
             if (id != ticket.Id)
             {
@@ -102,6 +102,8 @@ namespace Parcial2_GonzalezUrregoAlejandro.Controllers
                 try
                 {
                     ticket.ModifiedDate = DateTime.Now;
+                    ticket.IsUsed = true;
+                    ticket.UseDate = DateTime.Now;
                     _context.Update(ticket);
                     await _context.SaveChangesAsync();
                 }
