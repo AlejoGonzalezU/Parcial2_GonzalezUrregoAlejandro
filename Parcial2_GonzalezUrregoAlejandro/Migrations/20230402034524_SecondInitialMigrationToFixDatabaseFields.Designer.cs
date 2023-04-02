@@ -12,8 +12,8 @@ using Parcial2_GonzalezUrregoAlejandro.DAL;
 namespace Parcial2_GonzalezUrregoAlejandro.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230402000154_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230402034524_SecondInitialMigrationToFixDatabaseFields")]
+    partial class SecondInitialMigrationToFixDatabaseFields
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,9 +27,11 @@ namespace Parcial2_GonzalezUrregoAlejandro.Migrations
 
             modelBuilder.Entity("Parcial2_GonzalezUrregoAlejandro.DAL.Entities.Ticket", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -47,6 +49,9 @@ namespace Parcial2_GonzalezUrregoAlejandro.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.ToTable("Tickets");
                 });

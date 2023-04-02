@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Parcial2_GonzalezUrregoAlejandro.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class SecondInitialMigrationToFixDatabaseFields : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,8 @@ namespace Parcial2_GonzalezUrregoAlejandro.Migrations
                 name: "Tickets",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UseDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsUsed = table.Column<bool>(type: "bit", nullable: false),
                     EntranceGate = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -26,6 +27,12 @@ namespace Parcial2_GonzalezUrregoAlejandro.Migrations
                 {
                     table.PrimaryKey("PK_Tickets", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tickets_Id",
+                table: "Tickets",
+                column: "Id",
+                unique: true);
         }
 
         /// <inheritdoc />

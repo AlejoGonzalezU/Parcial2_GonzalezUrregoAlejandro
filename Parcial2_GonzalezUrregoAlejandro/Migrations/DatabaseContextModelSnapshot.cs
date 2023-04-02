@@ -24,9 +24,11 @@ namespace Parcial2_GonzalezUrregoAlejandro.Migrations
 
             modelBuilder.Entity("Parcial2_GonzalezUrregoAlejandro.DAL.Entities.Ticket", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -44,6 +46,9 @@ namespace Parcial2_GonzalezUrregoAlejandro.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.ToTable("Tickets");
                 });
