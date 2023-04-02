@@ -92,11 +92,6 @@ namespace Parcial2_GonzalezUrregoAlejandro.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Validate(int id, Ticket ticket)
         {
-            if (id != ticket.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
@@ -107,15 +102,23 @@ namespace Parcial2_GonzalezUrregoAlejandro.Controllers
                     _context.Update(ticket);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateException dbUpdateException)
                 {
                     if (!TicketExists(ticket.Id))
                     {
-                        return NotFound();
+                        ModelState.AddModelError(string.Empty, "Boleta no válida.");
+                    }
+                    else if(dbUpdateException.InnerException == null)
+                    {
+                        ModelState.AddModelError(string.Empty, "Boleta no válida.");
+                    }
+                    else if (dbUpdateException.InnerException.Message.Contains("duplicate"))
+                    {
+                        ModelState.AddModelError(string.Empty, "Verificar posible fraude con boleta.");
                     }
                     else
                     {
-                        throw;
+                        ModelState.AddModelError(string.Empty, dbUpdateException.InnerException.Message);
                     }
                 }
                 return RedirectToAction(nameof(Index));
